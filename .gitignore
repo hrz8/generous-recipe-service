@@ -68,4 +68,6 @@ dist/
 
 # js and sourcemap
 *.js
+!.eslintrc.js
+!.prettierrc.js
 *.js.map
