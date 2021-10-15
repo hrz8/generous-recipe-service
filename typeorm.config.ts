@@ -2,11 +2,13 @@ import env from 'env-var'
 import dotenv from 'dotenv'
 
 import { ConnectionOptions } from 'typeorm'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
 const ormconfig = (): ConnectionOptions => {
     dotenv.config()
     // - set connection options
     const options: ConnectionOptions = {
+        namingStrategy: new SnakeNamingStrategy(),
         // - dbms
         type: 'sqlite',
         // - connection
