@@ -17,8 +17,11 @@ export class StepIngredients {
     public unit?: string
 
     // Relations FK
+    // @ManyToOne(() => Ingredient, {
+    //     Nullable: false,
+    // })
     @ManyToOne(() => Ingredient, {
-        nullable: false,
+        primary: true,
     })
     public ingredient!: Ingredient
 
