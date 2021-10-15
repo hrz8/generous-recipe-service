@@ -1,0 +1,77 @@
+{
+    "name": "generous-recipe-service",
+    "version": "1.0.0",
+    "description": "My Moleculer-based microservices project",
+    "scripts": {
+        "start": "tsc --build && node src/server",
+        "db:sync": "tsc --build && typeorm --config typeorm.config.js schema:sync",
+        "db:drop": "tsc --build && typeorm --config typeorm.config.js schema:drop",
+        "db:new-migration": "tsc --build && typeorm --config typeorm.config.js migration:create -n",
+        "db:migrate": "tsc --build && typeorm --config typeorm.config.js migration:run",
+        "ts:clear-cache": "find . \\( -name '*.js' -or -name '*.js.map' \\) -not \\( -name '*.config.js' -or -name 'assets*.js' -or -path './node_modules*' -or -path './scripts*' \\) -type f -delete",
+        "cli": "moleculer connect ",
+        "ci": "jest --watch",
+        "test": "jest --coverage",
+        "lint": "eslint --ext .js,.ts .",
+        "dc:up": "docker-compose up --build -d",
+        "dc:logs": "docker-compose logs -f",
+        "dc:down": "docker-compose down"
+    },
+    "keywords": [
+        "microservices",
+        "moleculer"
+    ],
+    "author": "",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.1",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-prefer-arrow": "^1.2.2",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jest": "^25.1.0",
+        "jest-cli": "^25.1.0",
+        "moleculer-repl": "^0.6.2",
+        "nodemon": "^2.0.13",
+        "prettier": "^2.4.1",
+        "ts-jest": "^25.3.0",
+        "ts-node": "^8.8.1"
+    },
+    "dependencies": {
+        "@types/jest": "^25.1.4",
+        "@types/mkdirp": "^1.0.0",
+        "@types/node": "^13.9.8",
+        "dotenv": "^10.0.0",
+        "env-var": "^7.0.1",
+        "moleculer": "^0.14.0",
+        "moleculer-web": "^0.9.0",
+        "reflect-metadata": "^0.1.13",
+        "sqlite3": "^5.0.2",
+        "typeorm": "^0.2.38",
+        "typescript": "^3.8.3"
+    },
+    "engines": {
+        "node": ">= 10.x.x"
+    },
+    "jest": {
+        "coverageDirectory": "<rootDir>/coverage",
+        "testEnvironment": "node",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "ts-jest"
+        },
+        "testMatch": [
+            "**/*.spec.(ts|js)"
+        ],
+        "globals": {
+            "ts-jest": {
+                "tsConfig": "tsconfig.json"
+            }
+        }
+    }
+}
