@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import 'tsconfig-paths/register'
 
 import { createConnection } from 'typeorm'
+import { CustomServiceBroker } from '@/types/broker'
 import moleculerConfig from '~/moleculer.config'
 import typeormConfig from '~/typeorm.config'
 
@@ -11,7 +12,9 @@ dotenv.config()
 
 const broker = new ServiceBroker({
     ...moleculerConfig,
-    created: async (brk: ServiceBroker): Promise<void> => {
+    created: async (
+        brk: CustomServiceBroker
+    ): Promise<void> => {
         const connection = await createConnection(
             typeormConfig
         )
