@@ -39,6 +39,9 @@ export class Step {
     public recipe!: Recipe
 
     // Relations 1toM
-    @OneToMany(() => StepIngredients, (stepIngredients) => stepIngredients.step)
+    @OneToMany(
+        () => StepIngredients,
+        (stepIngredients) => stepIngredients.step
+    )
     public stepIngredients?: StepIngredients[]
 }

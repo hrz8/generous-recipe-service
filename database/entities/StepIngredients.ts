@@ -26,9 +26,13 @@ export class StepIngredients {
     public ingredient!: Ingredient
 
     // Relations Mto1
-    @ManyToOne(() => Recipe, (recipe) => recipe.stepIngredients, {
-        primary: true,
-    })
+    @ManyToOne(
+        () => Recipe,
+        (recipe) => recipe.stepIngredients,
+        {
+            primary: true,
+        }
+    )
     public recipe!: Recipe
 
     @ManyToOne(() => Step, (step) => step.stepIngredients, {

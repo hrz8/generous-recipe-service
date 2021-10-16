@@ -23,6 +23,9 @@ export class RecipeCategory {
     )
     public parent?: RecipeCategory
 
-    @OneToMany(() => RecipeCategory, (recipeCategory) => recipeCategory.parent)
+    @OneToMany(
+        () => RecipeCategory,
+        (recipeCategory) => recipeCategory.parent
+    )
     public children?: RecipeCategory[]
 }
