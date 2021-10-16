@@ -7,4 +7,5 @@ module.exports = {
     bracketSpacing: true,
     useTabs: false,
     endOfLine: "auto",
+    parser: "typescript",
 };
