@@ -3,7 +3,7 @@ import { Service, ServiceBroker } from 'moleculer'
 import ApiGateway from 'moleculer-web'
 import glob from 'glob'
 import RestfulMixin from '@/mixins/restful.mixin'
-import { RestfulEndpoint } from '~/types/broker'
+import { RestfulEndpoint } from '@/types/domains'
 
 export default class RestfulService extends Service {
     public constructor(broker: ServiceBroker) {
