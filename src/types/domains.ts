@@ -1,3 +1,5 @@
+import { ActionParamTypes } from 'moleculer'
+
 export interface RestfulEndpoint {
     path: string
     aliases: {
@@ -7,8 +9,8 @@ export interface RestfulEndpoint {
 
 export interface DomainActionValidator {
     [key: string]: {
-        params: any
-        query: any
-        body: any
+        params: ActionParamTypes
+        query: ActionParamTypes
+        body: ActionParamTypes
     }
 }
