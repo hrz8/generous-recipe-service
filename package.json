@@ -8,7 +8,7 @@
         "db:drop": "tsc --build && typeorm --config typeorm.config.js schema:drop",
         "db:new-migration": "tsc --build && typeorm --config typeorm.config.js migration:create -n",
         "db:migrate": "tsc --build && typeorm --config typeorm.config.js migration:run",
-        "ts:clear-cache": "find . \\( -name '*.js' -or -name '*.js.map' \\) -not \\( -name '*.config.js' -or -name 'assets*.js' -or -path './node_modules*' -or -path './scripts*' \\) -type f -delete",
+        "ts:clear-cache": "find . \\( -name '*.js' -or -name '*.js.map' \\) -not \\( -name '*.config.js' -or -name 'assets*.js' -or -path './node_modules*' -or -path './scripts*' -or -name '.eslintrc.js' -or -name '.prettierrc.js' \\) -type f -delete",
         "cli": "moleculer connect ",
         "ci": "jest --watch",
         "test": "jest --coverage",
