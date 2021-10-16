@@ -1,7 +1,5 @@
 import { Service, ServiceSchema } from 'moleculer'
-
-type MixinSchema = Partial<ServiceSchema> &
-    ThisType<Service>
+import { MixinSchema } from '@/types/broker'
 
 export default class RestfulMixin
     implements Partial<ServiceSchema>, ThisType<Service>

@@ -1,7 +1,7 @@
 {
     "name": "generous-recipe-service",
     "version": "1.0.0",
-    "description": "My Moleculer-based microservices project",
+    "description": "moleculer-based microservices project",
     "scripts": {
         "start": "tsc --build && node src/server",
         "db:sync": "tsc --build && typeorm --config typeorm.config.js schema:sync",
@@ -21,9 +21,13 @@
         "microservices",
         "moleculer"
     ],
-    "author": "",
+    "author": "Hirzi Nurfakhrian",
     "devDependencies": {
         "@types/glob": "^7.1.4",
+        "@types/jest": "^25.1.4",
+        "@types/lodash": "^4.14.175",
+        "@types/mkdirp": "^1.0.0",
+        "@types/node": "^13.9.8",
         "@typescript-eslint/eslint-plugin": "^5.0.0",
         "@typescript-eslint/parser": "^5.0.0",
         "eslint": "^8.0.1",
@@ -40,12 +44,10 @@
         "ts-node": "^8.8.1"
     },
     "dependencies": {
-        "@types/jest": "^25.1.4",
-        "@types/mkdirp": "^1.0.0",
-        "@types/node": "^13.9.8",
         "dotenv": "^10.0.0",
         "env-var": "^7.0.1",
         "glob": "^7.2.0",
+        "lodash": "^4.17.21",
         "moleculer": "^0.14.0",
         "moleculer-web": "^0.9.0",
         "reflect-metadata": "^0.1.13",

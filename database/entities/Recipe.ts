@@ -9,6 +9,7 @@ import {
     OneToMany,
 } from 'typeorm'
 import { RecipeCategory } from './RecipeCategory'
+import { Step } from './Step'
 import { StepIngredients } from './StepIngredients'
 import { User } from './User'
 
@@ -44,6 +45,9 @@ export class Recipe {
     public recipeCategories?: RecipeCategory[]
 
     // Relations 1toM
+    @OneToMany(() => Step, (steps) => steps.recipe)
+    public steps?: Step[]
+
     @OneToMany(
         () => StepIngredients,
         (stepIngredients) => stepIngredients.recipe
