@@ -7,7 +7,6 @@ export default class GreeterService extends Service {
         super(broker)
         this.parseServiceSchema({
             name: 'greeter',
-            version: 2,
             actions: {
                 hello: {
                     async handler(): Promise<string> {
