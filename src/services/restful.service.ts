@@ -22,7 +22,7 @@ export default class RestfulService extends Service {
                     .default('/api')
                     .asString(),
                 port: env
-                    .get('APP_PORT')
+                    .get('RESTFUL_PORT')
                     .default(3000)
                     .asInt(),
                 routes,
