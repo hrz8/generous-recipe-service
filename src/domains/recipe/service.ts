@@ -15,16 +15,10 @@ export default class RecipeService extends Service {
             mixins: [commonMixin],
             actions: {
                 list: {
-                    params: validators.welcome,
+                    cache: true,
+                    params: validators.list,
                     handler: async (
-                        ctx: Context<{
-                            query: {
-                                pagination?: {
-                                    page: string
-                                    limit: string
-                                }
-                            }
-                        }> & {
+                        ctx: Context & {
                             broker: CustomServiceBroker
                         }
                     ): Promise<any> => {
@@ -33,14 +27,33 @@ export default class RecipeService extends Service {
                             'listPayload',
                             {}
                         )
-                        const [result, count] =
+                        const [result, total] =
                             await ctx.broker.dbService
                                 .getRepository(Recipe)
-                                .findAndCount(payload)
+                                .findAndCount({
+                                    ...payload,
+                                    relations: [
+                                        'author',
+                                        'steps',
+                                        'steps.stepIngredients',
+                                        'steps.stepIngredients.ingredient',
+                                        'recipeCategories',
+                                    ],
+                                })
                         return new Response(result, {
-                            total: count,
+                            count: result.length,
+                            total,
                         })
                     },
+                },
+            },
+            events: {
+                'cache.clean.recipe.list': (): void => {
+                    if (this.broker.cacher) {
+                        this.broker.cacher.clean(
+                            'recipe.list**'
+                        )
+                    }
                 },
             },
         })

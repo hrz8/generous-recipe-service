@@ -10,25 +10,22 @@ export default class GreeterV2Service extends Service {
             version: 2,
             actions: {
                 hello: {
-                    async handler(): Promise<{
+                    handler: (): {
                         response: string
-                    }> {
-                        return this.ActionHello()
-                    },
+                    } => this.ActionHello(),
                 },
                 welcome: {
                     params: validators.welcome,
-                    async handler(
+                    handler: (
                         ctx: Context<{
                             query: { name: string }
                         }> & {
                             broker: CustomServiceBroker
                         }
-                    ): Promise<{ response: string }> {
-                        return this.ActionWelcome(
+                    ): { response: string } =>
+                        this.ActionWelcome(
                             ctx.params.query.name
-                        )
-                    },
+                        ),
                 },
             },
         })

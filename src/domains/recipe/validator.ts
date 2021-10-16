@@ -1,20 +1,47 @@
 import { DomainActionValidator } from '@/types/domains'
 
 const validators: DomainActionValidator = {
-    welcome: {
+    list: {
         params: {
-            $$type: 'object|optional',
+            type: 'object',
+            optional: true,
+            props: {},
         },
         query: {
-            $$type: 'object|optional',
-            pagination: {
-                $$type: 'object|optional',
-                page: 'string',
-                limit: 'string',
+            type: 'object',
+            optional: true,
+            props: {
+                pagination: {
+                    type: 'object',
+                    default: {
+                        page: '1',
+                        limit: '5',
+                    },
+                    props: {
+                        page: 'string',
+                        limit: 'string',
+                    },
+                },
+                sort: {
+                    type: 'object',
+                    default: {
+                        by: 'id',
+                        mode: 'ASC',
+                    },
+                    props: {
+                        by: 'string',
+                        mode: {
+                            type: 'enum',
+                            values: ['ASC', 'DESC'],
+                        },
+                    },
+                },
             },
         },
         body: {
-            $$type: 'object|optional',
+            type: 'object',
+            optional: true,
+            props: {},
         },
     },
 }
