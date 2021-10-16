@@ -177,7 +177,7 @@ const brokerConfig: BrokerOptions = {
     // Called after broker started.
     started: async (broker: ServiceBroker): Promise<void> => {},
     stopped: async (broker: ServiceBroker): Promise<void> => {},
-     */
+    */
 }
 
 export = brokerConfig
