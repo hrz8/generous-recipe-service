@@ -27,9 +27,9 @@ import { BrokerOptions, Errors } from 'moleculer'
  */
 const brokerConfig: BrokerOptions = {
     // Namespace of nodes to segment your nodes on the same network.
-    namespace: '',
+    namespace: 'generouse-recipe',
     // Unique node identifier. Must be unique in a namespace.
-    nodeID: null,
+    nodeID: 'node-generouse-recipe',
     // Custom metadata store. Store here what you want. Accessing: `this.broker.metadata`
     metadata: {},
 
@@ -85,7 +85,8 @@ const brokerConfig: BrokerOptions = {
         // Backoff factor for delay. 2 means exponential backoff.
         factor: 2,
         // A function to check failed requests.
-        check: (err: Errors.MoleculerError) => err && !!err.retryable,
+        check: (err: Errors.MoleculerError) =>
+            err && !!err.retryable,
     },
 
     // Limit of calling level. If it reaches the limit, broker will throw an MaxCallLevelError error. (Infinite loop protection)
@@ -132,7 +133,8 @@ const brokerConfig: BrokerOptions = {
         // Number of milliseconds to switch from open to half-open state
         halfOpenTime: 10 * 1000,
         // A function to check failed requests.
-        check: (err: Errors.MoleculerError) => err && err.code >= 500,
+        check: (err: Errors.MoleculerError) =>
+            err && err.code >= 500,
     },
 
     // Settings of bulkhead feature. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Bulkhead
@@ -177,7 +179,7 @@ const brokerConfig: BrokerOptions = {
     // Called after broker started.
     started: async (broker: ServiceBroker): Promise<void> => {},
     stopped: async (broker: ServiceBroker): Promise<void> => {},
-     */
+    */
 }
 
 export = brokerConfig
