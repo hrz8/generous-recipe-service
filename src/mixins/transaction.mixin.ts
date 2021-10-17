@@ -31,7 +31,7 @@ export default class TransactionMixin
                     '*': async (
                         ctx: CustomContext,
                         res: any
-                    ): Promise<void> => {
+                    ): Promise<any> => {
                         const queryRunner: QueryRunner =
                             _get(ctx, '$dbRunner')
                         if (queryRunner) {
@@ -45,7 +45,7 @@ export default class TransactionMixin
                     '*': async (
                         ctx: CustomContext,
                         err: Error
-                    ): Promise<void> => {
+                    ): Promise<any> => {
                         const queryRunner: QueryRunner =
                             _get(ctx, '$dbRunner')
                         if (queryRunner) {
