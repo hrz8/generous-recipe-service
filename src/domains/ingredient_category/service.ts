@@ -4,7 +4,7 @@ import IngredientCategoryRepository from './repository'
 import IngredientCategoryError from './error'
 import { IngredientCategoryGetPayload } from './types'
 import { CustomContext } from '@/types/broker'
-import { SuccessResponse } from '~/src/utils/response/success'
+import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
 
 export default class IngredientCategoryService extends Service {
