@@ -1,9 +1,10 @@
-import { Service, ServiceBroker, Errors } from 'moleculer'
+import { Service, ServiceBroker } from 'moleculer'
 import validators from './validator'
 import IngredientCategoryRepository from './repository'
+import IngredientCategoryError from './error'
 import { IngredientCategoryGetPayload } from './types'
 import { CustomContext } from '@/types/broker'
-import { Response } from '@/utils/response/response'
+import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
 
 export default class IngredientCategoryService extends Service {
@@ -19,7 +20,7 @@ export default class IngredientCategoryService extends Service {
                     params: validators.get,
                     handler: async (
                         ctx: CustomContext<IngredientCategoryGetPayload>
-                    ): Promise<Response> => {
+                    ): Promise<SuccessResponse> => {
                         const id = ctx.params.params.id
                         const result =
                             await IngredientCategoryRepository.get(
@@ -27,14 +28,11 @@ export default class IngredientCategoryService extends Service {
                                 id
                             )
                         if (!result) {
-                            throw new Errors.MoleculerError(
-                                'ingredient category not found',
-                                404,
-                                'NOT_FOUND',
-                                { id }
+                            throw IngredientCategoryError.notFound(
+                                id
                             )
                         }
-                        return new Response(result)
+                        return new SuccessResponse(result)
                     },
                 },
             },
