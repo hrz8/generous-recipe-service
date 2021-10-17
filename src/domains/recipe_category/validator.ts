@@ -7,7 +7,10 @@ const validators: DomainActionValidator = {
             type: 'object',
             optional: true,
             props: {
-                id: 'number',
+                id: {
+                    type: 'number',
+                    positive: true,
+                },
             },
         },
         query: {

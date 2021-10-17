@@ -19,8 +19,14 @@ const validators: DomainActionValidator = {
                         limit: '5',
                     },
                     props: {
-                        page: 'string',
-                        limit: 'string',
+                        page: {
+                            type: 'string',
+                            empty: false,
+                        },
+                        limit: {
+                            type: 'string',
+                            empty: false,
+                        },
                     },
                 },
                 sort: {
@@ -30,7 +36,10 @@ const validators: DomainActionValidator = {
                         mode: 'ASC',
                     },
                     props: {
-                        by: 'string',
+                        by: {
+                            type: 'string',
+                            empty: false,
+                        },
                         mode: {
                             type: 'enum',
                             values: ['ASC', 'DESC'],
@@ -38,6 +47,29 @@ const validators: DomainActionValidator = {
                     },
                 },
             },
+        },
+        body: {
+            type: 'object',
+            optional: true,
+            props: {},
+        },
+    },
+    // GET
+    get: {
+        params: {
+            type: 'object',
+            optional: true,
+            props: {
+                id: {
+                    type: 'number',
+                    positive: true,
+                },
+            },
+        },
+        query: {
+            type: 'object',
+            optional: true,
+            props: {},
         },
         body: {
             type: 'object',
@@ -61,12 +93,18 @@ const validators: DomainActionValidator = {
             type: 'object',
             optional: true,
             props: {
-                name: 'string',
+                name: {
+                    type: 'string',
+                    empty: false,
+                },
                 description: {
                     type: 'string',
                     optional: true,
                 },
-                author: 'number',
+                author: {
+                    type: 'number',
+                    positive: true,
+                },
                 categories: 'number[]',
             },
         },

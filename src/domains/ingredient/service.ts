@@ -2,8 +2,12 @@ import { Service, ServiceBroker } from 'moleculer'
 import { IngredientCategory } from '@db/entities/IngredientCategory'
 import { Ingredient } from '@db/entities/Ingredient'
 import validators from './validator'
-import { IngredientCreatePayload } from './types'
+import {
+    IngredientCreatePayload,
+    IngredientGetPayload,
+} from './types'
 import IngredientRepository from './repository'
+import IngredientError from './error'
 import { CustomContext } from '@/types/broker'
 import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
@@ -16,6 +20,26 @@ export default class IngredientService extends Service {
             name: 'ingredient',
             mixins: [commonMixin],
             actions: {
+                get: {
+                    cache: true,
+                    params: validators.get,
+                    handler: async (
+                        ctx: CustomContext<IngredientGetPayload>
+                    ): Promise<SuccessResponse> => {
+                        const id = ctx.params.params.id
+                        const result =
+                            await IngredientRepository.get(
+                                ctx,
+                                id
+                            )
+                        if (!result) {
+                            throw IngredientError.notFound(
+                                id
+                            )
+                        }
+                        return new SuccessResponse(result)
+                    },
+                },
                 create: {
                     params: validators.create,
                     handler: async (
