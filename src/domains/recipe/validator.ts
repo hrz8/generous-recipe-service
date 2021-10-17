@@ -1,6 +1,7 @@
 import { DomainActionValidator } from '@/types/domains'
 
 const validators: DomainActionValidator = {
+    // LIST
     list: {
         params: {
             type: 'object',
@@ -42,6 +43,32 @@ const validators: DomainActionValidator = {
             type: 'object',
             optional: true,
             props: {},
+        },
+    },
+    // CREATE
+    create: {
+        params: {
+            type: 'object',
+            optional: true,
+            props: {},
+        },
+        query: {
+            type: 'object',
+            optional: true,
+            props: {},
+        },
+        body: {
+            type: 'object',
+            optional: true,
+            props: {
+                name: 'string',
+                description: {
+                    type: 'string',
+                    optional: true,
+                },
+                authorId: 'number',
+                categories: 'number[]',
+            },
         },
     },
 }

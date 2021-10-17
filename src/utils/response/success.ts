@@ -6,7 +6,7 @@ interface SuccessPayload {
 }
 
 export class SuccessResponse {
-    public status: string
+    public code: number
     public apiVersion: string
     public data: Record<string, any>
     public message: string
@@ -26,10 +26,10 @@ export class SuccessResponse {
             )
         }
 
-        this.status = '200'
+        this.message = responseMessage
+        this.code = 200
         this.apiVersion = apiVersion || 'unknown'
         this.data = _isObjectLike(data) ? data : {}
         this.meta = meta
-        this.message = responseMessage
     }
 }

@@ -14,6 +14,7 @@
 - [x] API list of recipes 🍱
     - [x] Paginating 📃
     - [x] Sorting 📈
+    - [ ] Field querying 🌱
 - [] API to add new recipe 👨🏻‍🍳
 - [] API to add new ingredient 🧂
 - [] API to add new step for recipe (1 step) 🧪
