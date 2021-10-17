@@ -15,9 +15,9 @@
     - [x] Paginating 📃
     - [x] Sorting 📈
     - [ ] Field querying 🌱
-- [] API to add new recipe 👨🏻‍🍳
-- [] API to add new ingredient 🧂
-- [] API to add new step for recipe (1 step) 🧪
+- [x] API to add new recipe 👨🏻‍🍳
+- [x] API to add new ingredient 🧂
+- [x] API to add new step for recipe (1 step) 🧪
 
 ## Stack used 🥞
 
