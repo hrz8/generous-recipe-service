@@ -45,6 +45,26 @@ const validators: DomainActionValidator = {
             props: {},
         },
     },
+    // GET
+    get: {
+        params: {
+            type: 'object',
+            optional: true,
+            props: {
+                id: 'number',
+            },
+        },
+        query: {
+            type: 'object',
+            optional: true,
+            props: {},
+        },
+        body: {
+            type: 'object',
+            optional: true,
+            props: {},
+        },
+    },
     // CREATE
     create: {
         params: {

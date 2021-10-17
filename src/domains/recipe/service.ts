@@ -5,7 +5,11 @@ import { RecipeCategory } from '@db/entities/RecipeCategory'
 import { UserGetPayload } from '@domains/user/types'
 import validators from './validator'
 import RecipeRepository from './repository'
-import { RecipeCreatePayload } from './types'
+import RecipeError from './error'
+import {
+    RecipeCreatePayload,
+    RecipeGetPayload,
+} from './types'
 import { CustomContext } from '@/types/broker'
 import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
@@ -41,6 +45,24 @@ export default class RecipeService extends Service {
                             count: result.length,
                             total,
                         })
+                    },
+                },
+                get: {
+                    cache: true,
+                    params: validators.get,
+                    handler: async (
+                        ctx: CustomContext<RecipeGetPayload>
+                    ): Promise<SuccessResponse> => {
+                        const id = ctx.params.params.id
+                        const result =
+                            await RecipeRepository.get(
+                                ctx,
+                                id
+                            )
+                        if (!result) {
+                            throw RecipeError.notFound(id)
+                        }
+                        return new SuccessResponse(result)
                     },
                 },
                 create: {

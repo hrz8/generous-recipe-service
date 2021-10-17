@@ -24,6 +24,16 @@ export default abstract class RecipeRepository {
         })
     }
 
+    public static async get(
+        ctx: CustomContext,
+        id: number
+    ): Promise<Recipe> {
+        const result = await (
+            await this.repo(ctx)
+        ).findOne(id)
+        return result
+    }
+
     public static async create(
         ctx: CustomContext<RecipeCreatePayload>,
         payload: Recipe
