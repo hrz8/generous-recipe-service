@@ -1,8 +1,6 @@
 import { Context, Service, ServiceSchema } from 'moleculer'
 import { set as _set, get as _get } from 'lodash'
 import { FindManyOptions } from 'typeorm'
-import { SuccessResponse } from '@/utils/response/success'
-import { Response } from '@/utils/response/response'
 import {
     CustomServiceBroker,
     MixinSchema,
@@ -45,30 +43,6 @@ export default class CommonMixin
                             payload
                         )
                         _set(ctx, 'listPayload', payload)
-                    },
-                },
-                after: {
-                    '*': (
-                        ctx,
-                        res: Response
-                    ): SuccessResponse => {
-                        const serviceName = ctx.service.name
-                        const actionName =
-                            ctx.action.rawName
-                        const version =
-                            ctx.service.version || 1
-                        const { responseMessage } =
-                            ctx.action
-                        return new SuccessResponse(
-                            res.data,
-                            res.meta,
-                            {
-                                responseMessage:
-                                    responseMessage ||
-                                    `success ${actionName} ${serviceName}`,
-                                apiVersion: `v${version}`,
-                            }
-                        )
                     },
                 },
             },

@@ -7,7 +7,7 @@ import validators from './validator'
 import RecipeRepository from './repository'
 import { RecipeCreatePayload } from './types'
 import { CustomContext } from '@/types/broker'
-import { Response } from '@/utils/response/response'
+import { SuccessResponse } from '~/src/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
 
 export default class RecipeService extends Service {
@@ -23,7 +23,7 @@ export default class RecipeService extends Service {
                     params: validators.list,
                     handler: async (
                         ctx: CustomContext
-                    ): Promise<Response> => {
+                    ): Promise<SuccessResponse> => {
                         const [result, total] =
                             await RecipeRepository.getAll(
                                 ctx,
@@ -37,7 +37,7 @@ export default class RecipeService extends Service {
                                     ],
                                 }
                             )
-                        return new Response(result, {
+                        return new SuccessResponse(result, {
                             count: result.length,
                             total,
                         })
@@ -47,7 +47,7 @@ export default class RecipeService extends Service {
                     params: validators.create,
                     handler: async (
                         ctx: CustomContext<RecipeCreatePayload>
-                    ): Promise<Response> => {
+                    ): Promise<SuccessResponse> => {
                         // Get required params
                         const authorId =
                             ctx.params.body.author
@@ -112,7 +112,7 @@ export default class RecipeService extends Service {
                         )
 
                         // Return action's response
-                        return new Response(result)
+                        return new SuccessResponse(result)
                     },
                 },
             },

@@ -1,9 +1,10 @@
-import { Service, ServiceBroker, Errors } from 'moleculer'
+import { Service, ServiceBroker } from 'moleculer'
 import validators from './validator'
 import UserRepository from './repository'
+import UserError from './error'
 import { UserGetPayload } from './types'
 import { CustomContext } from '@/types/broker'
-import { Response } from '@/utils/response/response'
+import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
 
 export default class UserService extends Service {
@@ -19,7 +20,7 @@ export default class UserService extends Service {
                     params: validators.get,
                     handler: async (
                         ctx: CustomContext<UserGetPayload>
-                    ): Promise<Response> => {
+                    ): Promise<SuccessResponse> => {
                         const id = ctx.params.params.id
                         const result =
                             await UserRepository.get(
@@ -27,14 +28,9 @@ export default class UserService extends Service {
                                 id
                             )
                         if (!result) {
-                            throw new Errors.MoleculerError(
-                                'user not found',
-                                404,
-                                'NOT_FOUND',
-                                { id }
-                            )
+                            throw UserError.notFound(id)
                         }
-                        return new Response(result)
+                        return new SuccessResponse(result)
                     },
                 },
             },

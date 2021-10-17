@@ -1,35 +1,12 @@
 import _isObjectLike from 'lodash/isObjectLike'
 
-interface SuccessPayload {
-    responseMessage?: string
-    apiVersion?: string
-}
-
 export class SuccessResponse {
-    public code: number
-    public apiVersion: string
-    public data: Record<string, any>
-    public message: string
+    public data: any
     public meta: any
 
-    public constructor(
-        data: Record<string, any>,
-        meta = {},
-        {
-            responseMessage = '',
-            apiVersion,
-        }: SuccessPayload = {} as SuccessPayload
-    ) {
-        if (!_isObjectLike(data)) {
-            throw new Error(
-                'data must be in array or object'
-            )
-        }
-
-        this.message = responseMessage
-        this.code = 200
-        this.apiVersion = apiVersion || 'unknown'
-        this.data = _isObjectLike(data) ? data : {}
+    public constructor(data: any, meta = {}) {
+        this.data =
+            _isObjectLike(data) || data === null ? data : {}
         this.meta = meta
     }
 }
