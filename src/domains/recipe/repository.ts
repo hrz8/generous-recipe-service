@@ -20,7 +20,7 @@ export default abstract class RecipeRepository {
             await this.repo(ctx)
         ).findAndCount({
             ...listPayload,
-            payload,
+            ...payload,
         })
     }
 
