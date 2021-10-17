@@ -66,7 +66,7 @@ const validators: DomainActionValidator = {
                     type: 'string',
                     optional: true,
                 },
-                authorId: 'number',
+                author: 'number',
                 categories: 'number[]',
             },
         },

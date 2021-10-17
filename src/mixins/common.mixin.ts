@@ -14,6 +14,10 @@ interface QueryParamsList {
             page: string
             limit: string
         }
+        sort?: {
+            by: string
+            mode: string
+        }
     }
 }
 

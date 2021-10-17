@@ -19,6 +19,9 @@
             "@db/*": [
                 "./database/*"
             ],
+            "@domains/*": [
+                "./src/domains/*"
+            ],
             "@/*": [
                 "./src/*"
             ]

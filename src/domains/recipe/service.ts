@@ -1,13 +1,14 @@
 import { Service, ServiceBroker } from 'moleculer'
 import { Recipe } from '@db/entities/Recipe'
+import { User } from '@db/entities/User'
+import { RecipeCategory } from '@db/entities/RecipeCategory'
+import { UserGetPayload } from '@domains/user/types'
 import validators from './validator'
 import RecipeRepository from './repository'
 import { RecipeCreatePayload } from './types'
 import { CustomContext } from '@/types/broker'
 import { Response } from '@/utils/response/response'
 import CommonMixin from '@/mixins/common.mixin'
-import { User } from '~/database/entities/User'
-import { RecipeCategory } from '~/database/entities/RecipeCategory'
 
 export default class RecipeService extends Service {
     public constructor(public broker: ServiceBroker) {
@@ -47,23 +48,32 @@ export default class RecipeService extends Service {
                     handler: async (
                         ctx: CustomContext<RecipeCreatePayload>
                     ): Promise<Response> => {
+                        // Get required params
                         const authorId =
-                            ctx.params.body.authorId
-                        const categories =
+                            ctx.params.body.author
+                        const categoriyIds =
                             ctx.params.body.categories
-                        const {
-                            data: author,
-                        }: { data: User } = await ctx.call(
-                            'user.get',
+
+                        // Get RecipeCategory instance from db by calling  its action
+                        const userGetPayload: UserGetPayload =
                             {
                                 params: {
                                     id: authorId,
                                 },
+                                query: {},
+                                body: {},
                             }
+                        const {
+                            data: author,
+                        }: { data: User } = await ctx.call(
+                            'user.get',
+                            userGetPayload
                         )
+
+                        // Get RecipeCategory instance from db by calling  its action
                         const categoriesInstance: RecipeCategory[] =
                             []
-                        for (const cat of categories) {
+                        for (const cat of categoriyIds) {
                             const {
                                 data: category,
                             }: { data: RecipeCategory } =
@@ -79,6 +89,8 @@ export default class RecipeService extends Service {
                                 category
                             )
                         }
+
+                        // Prepare new Recipe instance
                         const recipe = new Recipe()
                         recipe.author = author
                         recipe.recipeCategories =
@@ -86,6 +98,8 @@ export default class RecipeService extends Service {
                         recipe.name = ctx.params.body.name
                         recipe.description =
                             ctx.params.body.description
+
+                        // Create Recipe with repository
                         await RecipeRepository.create(
                             ctx,
                             recipe

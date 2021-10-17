@@ -2,7 +2,7 @@
 export interface RecipeCreatePayloadBody {
     name: string
     description: string
-    authorId: number
+    author: number
     categories: number[]
 }
 
