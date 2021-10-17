@@ -1,3 +1,14 @@
+// GET
+export interface IngredientGetPayloadParams {
+    id: number
+}
+
+export interface IngredientGetPayload {
+    params: IngredientGetPayloadParams
+    query: Record<any, unknown>
+    body: Record<any, unknown>
+}
+
 // CREATE
 export interface IngredientCreatePayloadBody {
     name: string
