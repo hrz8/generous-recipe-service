@@ -4,7 +4,11 @@ import {
     ServiceBroker,
     ServiceSchema,
 } from 'moleculer'
-import { Connection } from 'typeorm'
+import {
+    Connection,
+    EntityManager,
+    QueryRunner,
+} from 'typeorm'
 
 export type CustomServiceBroker = ServiceBroker & {
     dbService: Connection
@@ -12,6 +16,8 @@ export type CustomServiceBroker = ServiceBroker & {
 
 export type CustomContext<T = unknown> = Context<T> & {
     broker: CustomServiceBroker
+    $dbTrx: EntityManager
+    $dbRunner: QueryRunner
 }
 
 export type MixinSchema = Partial<ServiceSchema> &
