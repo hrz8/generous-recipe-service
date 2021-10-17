@@ -47,6 +47,14 @@ export default class RestfulMixin
                                     limit: '10MB',
                                 },
                             },
+                            // OnError: (
+                            //     Req: any,
+                            //     Res: any,
+                            //     Err: any
+                            // ) => {
+                            //     Const error = new err()
+                            //     Console.log(req)
+                            // },
                         })
                     )
                 schema.settings.routes = mutatedRoutes

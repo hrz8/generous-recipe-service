@@ -5,6 +5,7 @@ const restfulEndpoints: RestfulEndpoint[] = [
         path: '/recipe',
         aliases: {
             'GET ': 'recipe.list',
+            'POST ': 'recipe.create',
         },
     },
 ]
