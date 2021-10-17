@@ -1,12 +1,12 @@
 import { Service, ServiceBroker } from 'moleculer'
+import { IngredientCategory } from '@db/entities/IngredientCategory'
+import { Ingredient } from '@db/entities/Ingredient'
 import validators from './validator'
 import { IngredientCreatePayload } from './types'
 import IngredientRepository from './repository'
 import { CustomContext } from '@/types/broker'
 import { SuccessResponse } from '@/utils/response/success'
 import CommonMixin from '@/mixins/common.mixin'
-import { IngredientCategory } from '~/database/entities/IngredientCategory'
-import { Ingredient } from '~/database/entities/Ingredient'
 
 export default class IngredientService extends Service {
     public constructor(public broker: ServiceBroker) {
