@@ -54,7 +54,7 @@ export default class RecipeService extends Service {
                         const categoriyIds =
                             ctx.params.body.categories
 
-                        // Get RecipeCategory instance from db by calling  its action
+                        // Get User/Author instance from db by calling its action
                         const userGetPayload: UserGetPayload =
                             {
                                 params: {
@@ -70,7 +70,7 @@ export default class RecipeService extends Service {
                             userGetPayload
                         )
 
-                        // Get RecipeCategory instance from db by calling  its action
+                        // Get RecipeCategory instance from db by calling its action
                         const categoriesInstance: RecipeCategory[] =
                             []
                         for (const cat of categoriyIds) {
@@ -100,21 +100,31 @@ export default class RecipeService extends Service {
                             ctx.params.body.description
 
                         // Create Recipe with repository
-                        await RecipeRepository.create(
-                            ctx,
-                            recipe
+                        const result =
+                            await RecipeRepository.create(
+                                ctx,
+                                recipe
+                            )
+
+                        // Clean Recipe list cache
+                        await ctx.broker.broadcast(
+                            'cache.clean.recipe.list'
                         )
-                        return new Response(recipe)
+
+                        // Return action's response
+                        return new Response(result)
                     },
                 },
             },
             events: {
-                'cache.clean.recipe.list': (): void => {
-                    if (this.broker.cacher) {
-                        this.broker.cacher.clean(
-                            'recipe.list**'
-                        )
-                    }
+                'cache.clean.recipe.list': {
+                    handler: (): void => {
+                        if (this.broker.cacher) {
+                            this.broker.cacher.clean(
+                                'recipe.list**'
+                            )
+                        }
+                    },
                 },
             },
         })

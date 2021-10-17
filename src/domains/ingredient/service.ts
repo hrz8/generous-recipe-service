@@ -25,7 +25,7 @@ export default class IngredientService extends Service {
                         const categoriyIds =
                             ctx.params.body.categories
 
-                        // Get IngredientCategory instance from db by calling  its action
+                        // Get IngredientCategory instance from db by calling its action
                         const categoriesInstance: IngredientCategory[] =
                             []
                         for (const cat of categoriyIds) {
@@ -34,7 +34,7 @@ export default class IngredientService extends Service {
                             }: {
                                 data: IngredientCategory
                             } = await ctx.call(
-                                'igredient_category.get',
+                                'ingredient_category.get',
                                 {
                                     params: {
                                         id: cat,
@@ -54,13 +54,15 @@ export default class IngredientService extends Service {
                             ctx.params.body.name
                         ingredient.color =
                             ctx.params.body.color
+                        ingredient.img = ctx.params.body.img
 
-                        // Create Recipe with repository
-                        await IngredientRepository.create(
-                            ctx,
-                            ingredient
-                        )
-                        return new Response(ingredient)
+                        // Create Ingredient with repository
+                        const result =
+                            await IngredientRepository.create(
+                                ctx,
+                                ingredient
+                            )
+                        return new Response(result)
                     },
                 },
             },
