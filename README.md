@@ -61,7 +61,7 @@ $ cd generous-recipe-service
 $ touch .env
 ```
 
-If the environment variable thatnot setup, it will cover by default value using the `env-var` library.
+If the environment variable not setup, it will cover by default value using the `env-var` library.
 
 | Environtment Variable      | Description |
 | -------------------------- | ----------- |
