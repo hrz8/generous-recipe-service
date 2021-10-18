@@ -8,7 +8,9 @@ import { CustomServiceBroker } from '@/types/broker'
 import moleculerConfig from '~/moleculer.config'
 import typeormConfig from '~/typeorm.config'
 
-dotenv.config()
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config()
+}
 
 const broker = new ServiceBroker({
     ...moleculerConfig,
@@ -24,6 +26,7 @@ const broker = new ServiceBroker({
 
 // Load gateway services
 broker.loadService('./src/services/restful.service.js')
+broker.loadService('./src/services/health.service.js')
 
 // Load domains services
 broker.loadServices('./src/domains', '**/service.js')

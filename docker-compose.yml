@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  generous-app:
+    build:
+      context: .
+    image: generous-recipe-service:1.0
+    environment:
+      RESTFUL_PORT: 3111
+      RESTFUL_PATH: /api
+    ports:
+      - 3111:3111
+    networks:
+      - internal
+
+networks:
+  internal:
+
+volumes:
+  data:
