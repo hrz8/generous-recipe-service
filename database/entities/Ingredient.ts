@@ -31,5 +31,5 @@ export class Ingredient {
     @JoinTable({
         name: 'ingredient_category_ingredient',
     })
-    public ingredientCatories?: IngredientCategory[]
+    public ingredientCategories?: IngredientCategory[]
 }

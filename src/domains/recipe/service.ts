@@ -86,19 +86,20 @@ export default class RecipeService extends Service {
                                 body: {},
                             }
                         const {
-                            data: author,
-                        }: { data: User } = await ctx.call(
-                            'user.get',
-                            userGetPayload
-                        )
+                            result: author,
+                        }: { result: User } =
+                            await ctx.call(
+                                'user.get',
+                                userGetPayload
+                            )
 
                         // Get RecipeCategory instance from db by calling its action
                         const categoriesInstance: RecipeCategory[] =
                             []
                         for (const cat of categoriyIds) {
                             const {
-                                data: category,
-                            }: { data: RecipeCategory } =
+                                result: category,
+                            }: { result: RecipeCategory } =
                                 await ctx.call(
                                     'recipe_category.get',
                                     {
