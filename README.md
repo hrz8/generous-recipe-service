@@ -58,8 +58,7 @@ So far, the environment variable that required to be added is the `DB_PATH` only
 
 | Environtment Variable      | Description |
 | -------------------------- | ----------- |
-| RESTFUL_PORT               | will be the port of the Restful API server which will serve the services/API.       |
-| RESTFUL_PATH               | will be the prefix of the server's URL. Example: `https://host.com{RESTFUL_PATH}/v1/some-app/`. The default will be `/api`.        |
+| RESTFUL_PORT               | will be the port of the Restful API server which will serve the services/API. Default = `3000`       |
 | DB_PATH                    | will be the path of your `.sqlite` database is living, required to set this up.        |
 
 `.env` file should be look like this:
@@ -100,6 +99,24 @@ Debug app using VsCode Debugger Tool
 - Select your debugger to be set as `Launch Debug 🕵️‍♂️`
 - Press `F5` to run the debugging
 - Done!
+
+### Dockering 🐳
+
+- Image Builds (Example)
+
+```bash
+$ yarn dc:build
+# make sure docker image already registered
+$ docker image ls
+$ docker create --name recipe-app -e RESTFUL_PORT=3100 -e RESTFUL_PATH=/api -e DB_PATH=./database/db.sqlite -p 3100:3100 generous-recipe-service:1.0
+$ docker start recipe-app
+# see the logs of the app
+$ docker logs recipe-app -f
+# health check
+$ curl http://{{docker_host}}:3100/api/health-check
+```
+
+- Docker Compose
 
 ## How to Use 💻
 
