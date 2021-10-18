@@ -11,13 +11,13 @@ interface ResponsePayload {
 export class Response {
     public code: number
     public apiVersion: string
-    public data: Record<string, any> | null
+    public result: Record<string, any> | null
     public message: string
     public meta: any
     public error: ErrorResponseObject | null
 
     public constructor(
-        data: Record<string, any> | null,
+        result: Record<string, any> | null,
         meta = {},
         {
             responseMessage = '',
@@ -26,7 +26,7 @@ export class Response {
             error = null,
         }: ResponsePayload = {} as ResponsePayload
     ) {
-        if (!_isObjectLike(data) && data !== null) {
+        if (!_isObjectLike(result) && result !== null) {
             throw new Error(
                 'data must be in array or object'
             )
@@ -36,8 +36,10 @@ export class Response {
         this.code = code
         this.apiVersion = apiVersion || 'unknown'
         this.error = error
-        this.data =
-            _isObjectLike(data) || data === null ? data : {}
+        this.result =
+            _isObjectLike(result) || result === null
+                ? result
+                : {}
         this.meta = meta
     }
 }

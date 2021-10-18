@@ -80,7 +80,7 @@ export default class RestfulMixin
                                         `success ${actionName} ${serviceName}`
                                     )
                                 return new Response(
-                                    response.data,
+                                    response.result,
                                     response.meta,
                                     {
                                         responseMessage,
