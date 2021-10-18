@@ -155,24 +155,26 @@ export default class CommonMixin
                     const func = availableProperties.find(
                         (o) => o.prop === fieldProp
                     )?.fn
-                    const key = `where.${col}${
-                        Object.keys(fieldConditions)
-                            .length > 1
-                            ? `[${index}]`
-                            : ''
-                    }`
-                    let val = fieldConditions[fieldProp]
-                    if (fieldProp === 'like') {
-                        val = `%${val}%`
+                    if (func) {
+                        const key = `where.${col}${
+                            Object.keys(fieldConditions)
+                                .length > 1
+                                ? `[${index}]`
+                                : ''
+                        }`
+                        let val = fieldConditions[fieldProp]
+                        if (fieldProp === 'like') {
+                            val = `%${val}%`
+                        }
+                        if (
+                            fieldProp !== 'eq' &&
+                            fieldProp !== 'like'
+                        ) {
+                            val = Number(val) || 0
+                        }
+                        _set(payload, key, func(val))
+                        index++
                     }
-                    if (
-                        fieldProp !== 'eq' &&
-                        fieldProp !== 'like'
-                    ) {
-                        val = Number(val) || 0
-                    }
-                    _set(payload, key, func(val))
-                    index++
                 }
             }
         }
