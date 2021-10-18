@@ -1,6 +1,14 @@
 import { Context, Service, ServiceSchema } from 'moleculer'
 import { set as _set, get as _get } from 'lodash'
-import { FindManyOptions } from 'typeorm'
+import {
+    Equal,
+    FindManyOptions,
+    LessThan,
+    LessThanOrEqual,
+    Like,
+    MoreThan,
+    MoreThanOrEqual,
+} from 'typeorm'
 import {
     CustomServiceBroker,
     MixinSchema,
@@ -39,6 +47,10 @@ export default class CommonMixin
                             payload
                         )
                         this.extractSortingClause(
+                            ctx,
+                            payload
+                        )
+                        this.extractFieldQueryingClause(
                             ctx,
                             payload
                         )
@@ -89,6 +101,79 @@ export default class CommonMixin
                 )
             if (columns.includes(sortBy)) {
                 payload.order = { [sortBy]: sortMode }
+            }
+        }
+    }
+
+    private extractFieldQueryingClause(
+        ctx: Context<QueryParamsList> & {
+            broker: CustomServiceBroker
+        },
+        payload: FindManyOptions
+    ): void {
+        const availableProperties = [
+            {
+                prop: 'eq',
+                fn: Equal,
+            },
+            {
+                prop: 'like',
+                fn: Like,
+            },
+            {
+                prop: 'gt',
+                fn: MoreThan,
+            },
+            {
+                prop: 'lt',
+                fn: LessThan,
+            },
+            {
+                prop: 'gte',
+                fn: MoreThanOrEqual,
+            },
+            {
+                prop: 'lte',
+                fn: LessThanOrEqual,
+            },
+        ]
+        const columns = ctx.broker.dbService
+            .getMetadata(ctx.service.name)
+            .ownColumns.map((column) => column.propertyName)
+        for (const col of columns) {
+            const fieldConditions = _get(
+                ctx,
+                `params.query.${col}`
+            )
+            let index = 0
+            for (const fieldProp in fieldConditions) {
+                if (
+                    availableProperties
+                        .map((o) => o.prop)
+                        .includes(fieldProp)
+                ) {
+                    const func = availableProperties.find(
+                        (o) => o.prop === fieldProp
+                    )?.fn
+                    const key = `where.${col}${
+                        Object.keys(fieldConditions)
+                            .length > 1
+                            ? `[${index}]`
+                            : ''
+                    }`
+                    let val = fieldConditions[fieldProp]
+                    if (fieldProp === 'like') {
+                        val = `%${val}%`
+                    }
+                    if (
+                        fieldProp !== 'eq' &&
+                        fieldProp !== 'like'
+                    ) {
+                        val = Number(val) || 0
+                    }
+                    _set(payload, key, func(val))
+                    index++
+                }
             }
         }
     }
