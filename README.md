@@ -13,6 +13,7 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
     * [Run Locally 🏃](#run-locally-)
     * [Debugging 🕵️‍♂️](#debugging-%EF%B8%8F%EF%B8%8F)
     * [Dockering 🐳](#dockering-)
+    * [Health Check 🇨🇭](#health-check-)
 - [How to Use 💻](#how-to-use-)
     * [List of recipes 🍱](#list-of-recipes-)
     * [Add new recipe 👨🏻‍🍳](#add-new-recipe-)
@@ -130,9 +131,16 @@ $ curl http://{{docker_host}}:3100/api/health-check
 $ yarn dc:up
 # see the logs of the app
 $ yarn dc:logs
+# health check
 $ curl http://{{docker_host}}:3111/api/health-check
 # stop the container
 $ yarn dc:down
+```
+
+### Health Check 🇨🇭
+
+```bash
+$ curl http://{{docker_host}}:{{RESTFUL_PORT}}/api/health-check
 ```
 
 ## How to Use 💻
