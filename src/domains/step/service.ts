@@ -82,7 +82,7 @@ export default class RecipeService extends Service {
                         }
 
                         // Get latest step number by getAll with sort by stepNumber limit 1
-                        const [lastSteps] = (
+                        const [lastSteps] =
                             await StepRepository.getAll(
                                 ctx,
                                 {
@@ -95,13 +95,15 @@ export default class RecipeService extends Service {
                                     take: 1,
                                 }
                             )
-                        )[0]
+                        const lastStep = lastSteps[0] || {
+                            stepNumber: 0,
+                        }
                         let stepNumberToAppend =
-                            lastSteps.stepNumber + 1
+                            lastStep.stepNumber + 1
 
                         if (
                             stepNumberPayload <=
-                            lastSteps.stepNumber
+                            lastStep.stepNumber
                         ) {
                             // If stepNumberPayload is in the middle
                             // Shifting the upper stepNumber
