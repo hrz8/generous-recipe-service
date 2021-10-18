@@ -24,6 +24,7 @@ const broker = new ServiceBroker({
 
 // Load gateway services
 broker.loadService('./src/services/restful.service.js')
+broker.loadService('./src/services/health.service.js')
 
 // Load domains services
 broker.loadServices('./src/domains', '**/service.js')

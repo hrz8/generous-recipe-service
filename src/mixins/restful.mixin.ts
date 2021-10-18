@@ -36,6 +36,12 @@ export default class RestfulMixin
                     mappingPolicy: 'restrict',
                     logging: true,
                 }
+                schema.settings.routes.push({
+                    path: '/health-check',
+                    aliases: {
+                        'GET ': 'health-check.check',
+                    },
+                })
                 const mutatedRoutes =
                     schema.settings.routes.map(
                         (route: any) => ({
