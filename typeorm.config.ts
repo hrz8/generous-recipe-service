@@ -1,18 +1,19 @@
-import env from 'env-var'
 import dotenv from 'dotenv'
 
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { SqliteConnectionOptions } from 'typeorm/driver/sqlite/SqliteConnectionOptions'
 
 const ormconfig = (): SqliteConnectionOptions => {
-    dotenv.config()
+    if (process.env.NODE_ENV !== 'production') {
+        dotenv.config()
+    }
     // - set connection options
     const options: SqliteConnectionOptions = {
         namingStrategy: new SnakeNamingStrategy(),
         // - dbms
         type: 'sqlite',
         // - connection
-        database: env.get('DB_PATH').required().asString(),
+        database: './database/db.sqlite',
         // - file-ing
         entities: [`${__dirname}/database/entities/*.js`],
         migrations: [

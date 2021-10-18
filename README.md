@@ -61,31 +61,30 @@ $ cd generous-recipe-service
 $ touch .env
 ```
 
-So far, the environment variable that required to be added is the `DB_PATH` only, the rest already covered by default value using the `env-var` library.
+If the environment variable thatnot setup, it will cover by default value using the `env-var` library.
 
 | Environtment Variable      | Description |
 | -------------------------- | ----------- |
 | RESTFUL_PORT               | will be the port of the Restful API server which will serve the services/API. Default = `3000`       |
-| DB_PATH                    | will be the path of your `.sqlite` database is living, required to set this up.        |
+| RESTFUL_PATH               | will be the prefix of the server's URL. Example: `https://host.com{RESTFUL_PATH}/v1/some-app/`. The default will be `/api`.        |
 
 `.env` file should be look like this:
 
 ```
 RESTFUL_PORT=3000
 RESTFUL_PATH=/api
-DB_PATH=./path/to/database/db.sqlite
 ```
 
 ### Database Setup ⚙️
 
-After `DB_PATH` been setup, you can run the migration to create and set all tables and also some seeds data for your `sqlite` database by run this commands:
+Run the migration to create and set all tables and also some seeds data for your `sqlite` database by run this commands:
 
 ```bash
 $ yarn db:sync
 $ yarn db:migrate
 ```
 
-Commands above will create the `database.sqlite` file in your specific `DB_PATH`. Picture below is the Diagram of database used.
+Commands above will create the `database.sqlite` file in `./database/db.sqlite`. Picture below is the Diagram of database used.
 
 ![recipe db diagram](db_diagram.png "DB Diagram")
 
@@ -117,7 +116,7 @@ Debug app using VsCode Debugger Tool
 $ yarn dc:build
 # make sure docker image already registered
 $ docker image ls
-$ docker create --name recipe-app -e RESTFUL_PORT=3100 -e RESTFUL_PATH=/api -e DB_PATH=./database/db.sqlite -p 3100:3100 generous-recipe-service:1.0
+$ docker create --name recipe-app -e RESTFUL_PORT=3100 -e RESTFUL_PATH=/api -p 3100:3100 generous-recipe-service:1.0
 $ docker start recipe-app
 # see the logs of the app
 $ docker logs recipe-app -f
@@ -126,6 +125,15 @@ $ curl http://{{docker_host}}:3100/api/health-check
 ```
 
 - Docker Compose (Example)
+
+```bash
+$ yarn dc:up
+# see the logs of the app
+$ yarn dc:logs
+$ curl http://{{docker_host}}:3111/api/health-check
+# stop the container
+$ yarn dc:down
+```
 
 ## How to Use 💻
 

@@ -8,7 +8,9 @@ import { CustomServiceBroker } from '@/types/broker'
 import moleculerConfig from '~/moleculer.config'
 import typeormConfig from '~/typeorm.config'
 
-dotenv.config()
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config()
+}
 
 const broker = new ServiceBroker({
     ...moleculerConfig,

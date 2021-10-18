@@ -13,13 +13,13 @@
         "db:migrate": "tsc && typeorm --config typeorm.config.js migration:run",
         "ts:clear-cache": "find . \\( -name '*.js' -or -name '*.js.map' \\) -not \\( -name 'assets*.js' -or -path './node_modules*' -or -path './scripts*' -or -name '.eslintrc.js' -or -name '.prettierrc.js' \\) -type f -delete",
         "dc:build": "docker build --tag generous-recipe-service:1.0 .",
+        "dc:up": "docker-compose up --build -d",
+        "dc:logs": "docker-compose logs -f",
+        "dc:down": "docker-compose down",
         "cli": "moleculer connect ",
         "ci": "jest --watch",
         "test": "jest --coverage",
-        "lint": "eslint --ext .js,.ts .",
-        "dc:up": "docker-compose up --build -d",
-        "dc:logs": "docker-compose logs -f",
-        "dc:down": "docker-compose down"
+        "lint": "eslint --ext .js,.ts ."
     },
     "keywords": [
         "microservices",

@@ -6,3 +6,5 @@ node_modules
 *.sqlite
 Dockerfile
 .vscode
+!.env
+!.env.sample
