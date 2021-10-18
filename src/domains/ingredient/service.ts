@@ -54,9 +54,9 @@ export default class IngredientService extends Service {
                             []
                         for (const cat of categoriyIds) {
                             const {
-                                data: category,
+                                result: category,
                             }: {
-                                data: IngredientCategory
+                                result: IngredientCategory
                             } = await ctx.call(
                                 'ingredient_category.get',
                                 {
@@ -72,7 +72,7 @@ export default class IngredientService extends Service {
 
                         // Prepare new Ingredient instance
                         const ingredient = new Ingredient()
-                        ingredient.ingredientCatories =
+                        ingredient.ingredientCategories =
                             categoriesInstance
                         ingredient.name =
                             ctx.params.body.name

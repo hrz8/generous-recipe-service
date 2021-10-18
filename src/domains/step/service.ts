@@ -47,8 +47,8 @@ export default class RecipeService extends Service {
                             }
 
                         const {
-                            data: recipe,
-                        }: { data: Recipe } =
+                            result: recipe,
+                        }: { result: Recipe } =
                             await ctx.call(
                                 'recipe.get',
                                 recipeGetPayload
@@ -58,8 +58,8 @@ export default class RecipeService extends Service {
                             []
                         for (const ing of ingredients) {
                             const {
-                                data: ingredient,
-                            }: { data: Ingredient } =
+                                result: ingredient,
+                            }: { result: Ingredient } =
                                 await ctx.call(
                                     'ingredient.get',
                                     {

@@ -1,4 +1,5 @@
 # generous-recipe-service
+Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5WEeAb) 📖
 
 ## What's going on here?
 
@@ -6,6 +7,12 @@
 - [Stack used 🥞](#stack-used-)
 - [How to Run 👟](#how-to-run-)
 - [How to Use 💻](#how-to-use-)
+    * [List of recipes 🍱](#list-of-recipes-)
+    * [Add new recipe 👨🏻‍🍳](#add-new-recipe-)
+    * [Add new ingredient 🧂](#add-new-ingredient-)
+    * [Add new step for recipe 🍳](#add-new-step-for-recipe-)
+    * [Success Response Schema 🍀](#success-response-schema-)
+    * [Error Response Schema ☢️](#error-response-schema-)
 
 ## Features Checklist ✅
 
@@ -14,7 +21,7 @@
 - [x] API list of recipes 🍱
     - [x] Paginating 📃
     - [x] Sorting 📈
-    - [ ] Field querying 🌱
+    - [x] Field querying 🌱
 - [x] API to add new recipe 👨🏻‍🍳
 - [x] API to add new ingredient 🧂
 - [x] API to add new step for recipe (1 step) 🧪
@@ -52,7 +59,7 @@ So far, the environment variable that required to be added is the `DB_PATH` only
 | Environtment Variable      | Description |
 | -------------------------- | ----------- |
 | RESTFUL_PORT               | will be the port of the Restful API server which will serve the services/API.       |
-| RESTFUL_PATH               | will be the prefix of the server's URL. Example: `https://example.com{RESTFUL_PATH}/v1/some-app/`. The default will be `/api`.        |
+| RESTFUL_PATH               | will be the prefix of the server's URL. Example: `https://host.com{RESTFUL_PATH}/v1/some-app/`. The default will be `/api`.        |
 | DB_PATH                    | will be the path of your `.sqlite` database is living, required to set this up.        |
 
 `.env` file should be look like this:
@@ -78,7 +85,7 @@ Commands above will create the `database.sqlite` file in your specific `DB_PATH`
 
 ### Run Locally 🏃
 
-The app itself created using `Typescript` which means you need to compile first, but no worries, you can just run this command below to run the app/server. This command below will compiling the `Typescript` at the first and run the server right after that.
+This command below will compiling the `Typescript` at the first and run the server right after that.
 
 ```bash
 $ yarn start
@@ -96,10 +103,74 @@ Debug app using VsCode Debugger Tool
 
 ## How to Use 💻
 
+This application based on RESTful API, so the usage will required to do the HTTP request to each available endpoint below. Full Documentation of how to use each endpoint is in the link right here: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5WEeAb) 📖
+
 ### List of recipes 🍱
+
+Endpoint:
+
+| Method | URI                                     |
+|--------|-----------------------------------------|
+| **GET**    | _{{host}}{{RESTFUL_PATH}}_**/recipe** |
+
 ### Add new recipe 👨🏻‍🍳
+
+Endpoint:
+
+| Method | URI                                     |
+|--------|-----------------------------------------|
+| **POST**    | _{{host}}{{RESTFUL_PATH}}_**/recipe** |
+
 ### Add new ingredient 🧂
-### Add new step for recipe 🧪
+
+Endpoint:
+
+| Method | URI                                     |
+|--------|-----------------------------------------|
+| **POST**    | _{{host}}{{RESTFUL_PATH}}_**/ingredient** |
+
+### Add new step for recipe 🍳
+
+Endpoint:
+
+| Method | URI                                     |
+|--------|-----------------------------------------|
+| **POST**    | _{{host}}{{RESTFUL_PATH}}_**/recipe/step** |
+
+
+### Success Response Schema 🍀
+
+```json
+{
+    "message": "success message",
+    "code": 200,
+    "apiVersion": "v1",
+    "error": null,
+    "result": {
+        "foo": "bar"
+    },
+    "meta": {}
+}
+```
+
+### Error Response Schema ☢️
+
+```json
+{
+    "message": "error message",
+    "code": 400,
+    "apiVersion": "v1",
+    "error": {
+        "name": "ErrorName",
+        "type": "ERROR_TYPE",
+        "data": {
+            "foo": "bar"
+        }
+    },
+    "result": null,
+    "meta": {}
+}
+```
 
 ## Author ℹ️
 
