@@ -1,0 +1,8 @@
+node_modules
+*.js
+!.eslintrc.js
+!.prettierrc.js
+*.js.map
+*.sqlite
+Dockerfile
+.vscode
