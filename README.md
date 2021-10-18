@@ -5,7 +5,14 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
 
 - [Features Checklist ✅](#features-checklist-)
 - [Stack used 🥞](#stack-used-)
+- [Before Run ☕️](#before-run-)
+    * [Clone Repo 💾](#clone-repo-)
+    * [Environtment Variable Setup 🛠](#environtment-variable-setup-)
+    * [Database Setup ⚙️](#database-setup-)
 - [How to Run 👟](#how-to-run-)
+    * [Run Locally 🏃](#run-locally-)
+    * [Debugging 🕵️‍♂️](#debugging-)
+    * [Dockering 🐳](#dockering-)
 - [How to Use 💻](#how-to-use-)
     * [List of recipes 🍱](#list-of-recipes-)
     * [Add new recipe 👨🏻‍🍳](#add-new-recipe-)
@@ -33,9 +40,9 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
 - MoleculerJS
 - TypeORM
 
-## How to Run 👟
+## Before Run ☕️
 
-- ❗️ Tutorial on this page will cover the step by using `yarn`. If you are using `npm`, please make sure you replace all `yarn` command by `npm run`.
+❗️ Tutorial on this page will cover the step by using `yarn`. If you are using `npm`, please make sure you replace all `yarn` command by `npm run`.
 
 ### Clone Repo 💾
 
@@ -82,6 +89,8 @@ Commands above will create the `database.sqlite` file in your specific `DB_PATH`
 
 ![recipe db diagram](db_diagram.png "DB Diagram")
 
+## How to Run 👟
+
 ### Run Locally 🏃
 
 This command below will compiling the `Typescript` at the first and run the server right after that.
@@ -116,7 +125,7 @@ $ docker logs recipe-app -f
 $ curl http://{{docker_host}}:3100/api/health-check
 ```
 
-- Docker Compose
+- Docker Compose (Example)
 
 ## How to Use 💻
 
