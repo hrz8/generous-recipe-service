@@ -41,7 +41,8 @@ export class Step {
     // Relations 1toM
     @OneToMany(
         () => StepIngredients,
-        (stepIngredients) => stepIngredients.step
+        (stepIngredients) => stepIngredients.step,
+        { cascade: ['insert'] }
     )
     public stepIngredients?: StepIngredients[]
 }

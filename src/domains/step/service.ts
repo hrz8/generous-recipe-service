@@ -100,7 +100,7 @@ export default class RecipeService extends Service {
                             lastSteps.stepNumber + 1
 
                         if (
-                            stepNumberPayload <
+                            stepNumberPayload <=
                             lastSteps.stepNumber
                         ) {
                             // If stepNumberPayload is in the middle
