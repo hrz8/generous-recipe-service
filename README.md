@@ -5,13 +5,13 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
 
 - [Features Checklist ✅](#features-checklist-)
 - [Stack used 🥞](#stack-used-)
-- [Before Run ☕️](#before-run-)
+- [Before Run ☕️](#before-run-%EF%B8%8F)
     * [Clone Repo 💾](#clone-repo-)
     * [Environtment Variable Setup 🛠](#environtment-variable-setup-)
-    * [Database Setup ⚙️](#database-setup-)
+    * [Database Setup ⚙️](#database-setup-%EF%B8%8F)
 - [How to Run 👟](#how-to-run-)
     * [Run Locally 🏃](#run-locally-)
-    * [Debugging 🕵️‍♂️](#debugging-)
+    * [Debugging 🕵️‍♂️](#debugging-%EF%B8%8F%EF%B8%8F)
     * [Dockering 🐳](#dockering-)
 - [How to Use 💻](#how-to-use-)
     * [List of recipes 🍱](#list-of-recipes-)
@@ -19,7 +19,7 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
     * [Add new ingredient 🧂](#add-new-ingredient-)
     * [Add new step for recipe 🍳](#add-new-step-for-recipe-)
     * [Success Response Schema 🍀](#success-response-schema-)
-    * [Error Response Schema ☢️](#error-response-schema-)
+    * [Error Response Schema ☢️](#error-response-schema-%EF%B8%8F)
 
 ## Features Checklist ✅
 
