@@ -214,6 +214,15 @@ Endpoint:
 }
 ```
 
+## Test 🧪
+
+Test health service
+
+```bash
+$ yarn test
+```
+
+
 ## Author ℹ️
 
 Hirzi Nurfakhrian
