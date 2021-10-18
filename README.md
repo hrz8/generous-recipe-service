@@ -12,7 +12,7 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
     * [Add new ingredient 🧂](#add-new-ingredient-)
     * [Add new step for recipe 🍳](#add-new-step-for-recipe-)
     * [Success Response Schema 🍀](#success-response-schema-)
-    * [Error Response Schema ❗️](#error-response-schema-)
+    * [Error Response Schema ☢️](#error-response-schema-)
 
 ## Features Checklist ✅
 
@@ -21,7 +21,7 @@ Full API Doc: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5
 - [x] API list of recipes 🍱
     - [x] Paginating 📃
     - [x] Sorting 📈
-    - [ ] Field querying 🌱
+    - [x] Field querying 🌱
 - [x] API to add new recipe 👨🏻‍🍳
 - [x] API to add new ingredient 🧂
 - [x] API to add new step for recipe (1 step) 🧪
@@ -103,7 +103,7 @@ Debug app using VsCode Debugger Tool
 
 ## How to Use 💻
 
-Full Doc right here: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5WEeAb) 📖
+This application based on RESTful API, so the usage will required to do the HTTP request to each available endpoint below. Full Documentation of how to use each endpoint is in the link right here: [DOCUMENTATION](https://documenter.getpostman.com/view/6786432/UV5WEeAb) 📖
 
 ### List of recipes 🍱
 
@@ -153,7 +153,7 @@ Endpoint:
 }
 ```
 
-### Error Response Schema ❗️
+### Error Response Schema ☢️
 
 ```json
 {
