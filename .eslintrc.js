@@ -5,7 +5,6 @@ module.exports = {
         node: true
     },
     ignorePatterns: [
-        "test/*",
         ".eslintrc.js",
         ".prettierrc.js"
     ],
