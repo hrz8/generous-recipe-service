@@ -1,4 +1,5 @@
 # generous-recipe-service
+Full API Doc: https://documenter.getpostman.com/view/6786432/UV5WEeAb 📖
 
 ## What's going on here?
 
@@ -95,6 +96,8 @@ Debug app using VsCode Debugger Tool
 - Done!
 
 ## How to Use 💻
+
+Full Documentation right here: https://documenter.getpostman.com/view/6786432/UV5WEeAb 📖
 
 ### List of recipes 🍱
 ### Add new recipe 👨🏻‍🍳
