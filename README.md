@@ -85,7 +85,7 @@ $ yarn db:sync
 $ yarn db:migrate
 ```
 
-Commands above will create the `database.sqlite` file in `./database/db.sqlite`. Picture below is the Diagram of database used.
+Commands above will create the `db.sqlite` file in `./database/db.sqlite`. Picture below is the Diagram of database used.
 
 ![recipe db diagram](db_diagram.png "DB Diagram")
 
@@ -133,7 +133,7 @@ $ yarn dc:up
 $ yarn dc:logs
 # health check
 $ curl http://{{docker_host}}:3111/api/health-check
-# stop the container
+# stop
 $ yarn dc:down
 ```
 

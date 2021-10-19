@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json yarn.lock ./
+RUN ["apk", "add", "--no-cache", "--virtual", ".gyp", "python", "make", "g++"]
 RUN yarn
 
 # Copy source
